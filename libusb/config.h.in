@@ -1,0 +1,45 @@
+#ifndef LIBUSB_CONFIG_H
+#define LIBUSB_CONFIG_H
+
+/* Visual Studio 2015 and later defines timespec */
+#if (_MSC_VER >= 1900)
+#define _TIMESPEC_DEFINED 1
+#endif
+
+/* Define to the attribute for default visibility. */
+#define DEFAULT_VISIBILITY @DEFAULT_VISIBILITY@
+
+/* Define to 1 to start with debug message logging enabled. */
+#cmakedefine ENABLE_DEBUG_LOGGING
+
+/* Define to 1 to enable message logging. */
+#cmakedefine ENABLE_LOGGING
+
+/* Define to 1 if you have the <asm/types.h> header file. */
+#cmakedefine HAVE_ASM_TYPES_H 1
+
+/* Define to 1 if you have the `udev' library (-ludev). */
+#cmakedefine HAVE_LIBUDEV 1
+
+/* Define to 1 if you have the <strings.h> header file. */
+#cmakedefine HAVE_STRINGS_H 1
+
+/* Define to 1 if the system has the type `struct timespec'. */
+#cmakedefine HAVE_STRUCT_TIMESPEC 1
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#cmakedefine HAVE_SYS_TIME_H 1
+
+/* Define to 1 if compiling for a POSIX platform. */
+#cmakedefine PLATFORM_POSIX
+
+/* Define to 1 if compiling for a Windows platform. */
+#cmakedefine PLATFORM_WINDOWS
+
+/* Define to 1 to output logging messages to the systemwide log. */
+#cmakedefine USE_SYSTEM_LOGGING_FACILITY
+
+/* Enable GNU extensions. */
+#cmakedefine _GNU_SOURCE
+
+#endif /* LIBUSB_CONFIG_H */
