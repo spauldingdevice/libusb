@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(libusb C)
 
+include(CheckCXXCompilerFlag)
 include(CheckFunctionExists)
 include(CheckSymbolExists)
 include(CheckStructHasMember)
@@ -66,7 +67,7 @@ if(UNIX)
 			libusb/os/threads_posix.c
 			)
 	set(PLATFORM_POSIX 1 CACHE INTERNAL "" FORCE)
-    check_cxx_compiler_flag("-fvisibility=hidden" HAVE_VISIBILITY)
+	check_cxx_compiler_flag("-fvisibility=hidden" HAVE_VISIBILITY)
 	find_package(Threads REQUIRED)
 elseif(WIN32)
 	set(PLATFORM_SOURCES
