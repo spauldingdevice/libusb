@@ -1,5 +1,8 @@
-#ifndef LIBUSB_CONFIG_H
-#define LIBUSB_CONFIG_H
+
+/* Visual Studio 2013 does not support __func__ */
+#if (_MSC_VER < 1900)
+#define __func__ __FUNCTION__
+#endif
 
 /* Visual Studio 2015 and later defines timespec */
 #if (_MSC_VER >= 1900)
@@ -13,22 +16,49 @@
 #cmakedefine ENABLE_DEBUG_LOGGING
 
 /* Define to 1 to enable message logging. */
-#cmakedefine ENABLE_LOGGING
+#cmakedefine ENABLE_LOGGING 1
 
 /* Define to 1 if you have the <asm/types.h> header file. */
-#cmakedefine HAVE_ASM_TYPES_H 1
+#cmakedefine HAVE_ASM_TYPES_H
+
+/* Define to 1 if you have the `clock_gettime' function. */
+#cmakedefine HAVE_CLOCK_GETTIME 1
+
+/* #define to 1 if the system has eventfd functionality. */
+#cmakedefine HAVE_EVENTFD 1
 
 /* Define to 1 if you have the `udev' library (-ludev). */
 #cmakedefine HAVE_LIBUDEV 1
 
-/* Define to 1 if you have the <strings.h> header file. */
-#cmakedefine HAVE_STRINGS_H 1
+/* #define to 1 if the system has the type `nfds_t'. */
+#cmakedefine HAVE_NFDS_T 1
+
+/* #define to 1 if you have the `pipe2' function. */
+#cmakedefine HAVE_PIPE2
+
+/* #define to 1 if you have the `pthread_condattr_setclock' function. */
+#cmakedefine HAVE_PTHREAD_CONDATTR_SETCLOCK
+
+/* #define to 1 if you have the `pthread_setname_np' function. */
+#cmakedefine HAVE_PTHREAD_SETNAME_NP
+
+/* #define to 1 if you have the `pthread_threadid_np' function. */
+#cmakedefine HAVE_PTHREAD_THREADID_NP
+
+/* #define to 1 if you have the <string.h> header file. */
+#cmakedefine HAVE_STRING_H
 
 /* Define to 1 if the system has the type `struct timespec'. */
 #cmakedefine HAVE_STRUCT_TIMESPEC 1
 
+/* #define to 1 if you have the `syslog' function. */
+#cmakedefine HAVE_SYSLOG
+
 /* Define to 1 if you have the <sys/time.h> header file. */
 #cmakedefine HAVE_SYS_TIME_H 1
+
+/* #define to 1 if the system has timerfd functionality. */
+#cmakedefine HAVE_TIMERFD
 
 /* Define to 1 if compiling for a POSIX platform. */
 #cmakedefine PLATFORM_POSIX
@@ -36,10 +66,18 @@
 /* Define to 1 if compiling for a Windows platform. */
 #cmakedefine PLATFORM_WINDOWS
 
+
+#if defined(__GNUC__)
+ #define PRINTF_FORMAT(a, b) __attribute__ ((format (__printf__, a, b)))
+#else
+ #define PRINTF_FORMAT(a, b)
+#endif
+
 /* Define to 1 to output logging messages to the systemwide log. */
 #cmakedefine USE_SYSTEM_LOGGING_FACILITY
 
+/* Version number of package */
+#cmakedefine VERSION "1.0.25-pre"
+
 /* Enable GNU extensions. */
 #cmakedefine _GNU_SOURCE
-
-#endif /* LIBUSB_CONFIG_H */
